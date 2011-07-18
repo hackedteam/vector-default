@@ -331,6 +331,7 @@ void sk_cleanup(void)
 
 char *winsock_error_string(int error)
 {
+#if 0
     switch (error) {
       case WSAEACCES:
 	return "Network error: Permission denied";
@@ -406,6 +407,8 @@ char *winsock_error_string(int error)
       default:
 	return "Unknown network error";
     }
+#endif
+	return "Unknown network error";
 }
 
 SockAddr sk_namelookup(const char *host, char **canonicalname,

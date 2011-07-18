@@ -875,8 +875,8 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show)
     }
 
     finished:
-    cleanup_exit(msg.wParam);	       /* this doesn't return... */
-    return msg.wParam;		       /* ... but optimiser doesn't know */
+    cleanup_exit(0);	       /* this doesn't return... */
+    return 0;		       /* ... but optimiser doesn't know */
 }
 
 /*
@@ -1993,6 +1993,7 @@ void timer_change_notify(long next)
 static LRESULT CALLBACK WndProc(HWND hwnd, UINT message,
 				WPARAM wParam, LPARAM lParam)
 {
+#if 0
     HDC hdc;
     static int ignore_clip = FALSE;
     static int need_backend_resize = FALSE;
@@ -3149,7 +3150,8 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT message,
      * Any messages we don't process completely above are passed through to
      * DefWindowProc() for default processing.
      */
-    return DefWindowProc(hwnd, message, wParam, lParam);
+#endif
+	return DefWindowProc(hwnd, message, wParam, lParam);
 }
 
 /*
@@ -3215,6 +3217,7 @@ static void sys_cursor_update(void)
 void do_text_internal(Context ctx, int x, int y, wchar_t *text, int len,
 		      unsigned long attr, int lattr)
 {
+#if 0
     COLORREF fg, bg, t;
     int nfg, nbg, nfont;
     HDC hdc = ctx;
@@ -3531,6 +3534,7 @@ void do_text_internal(Context ctx, int x, int y, wchar_t *text, int len,
 	oldpen = SelectObject(hdc, oldpen);
 	DeleteObject(oldpen);
     }
+#endif
 }
 
 /*
@@ -3698,6 +3702,7 @@ int char_width(Context ctx, int uc) {
 static int TranslateKey(UINT message, WPARAM wParam, LPARAM lParam,
 			unsigned char *output)
 {
+#if 0
     BYTE keystate[256];
     int scan, left_alt = 0, key_down, shift_state;
     int r, i, code;
@@ -4519,7 +4524,7 @@ static int TranslateKey(UINT message, WPARAM wParam, LPARAM lParam,
      */
     if (wParam == VK_MENU && !cfg.alt_only)
 	return 0;
-
+#endif
     return -1;
 }
 
@@ -4676,6 +4681,7 @@ void write_aclip(void *frontend, char *data, int len, int must_deselect)
  */
 void write_clip(void *frontend, wchar_t * data, int *attr, int len, int must_deselect)
 {
+#if 0
     HGLOBAL clipdata, clipdata2, clipdata3;
     int len2;
     void *lock, *lock2, *lock3;
@@ -4994,6 +5000,7 @@ void write_clip(void *frontend, wchar_t * data, int *attr, int len, int must_des
 
     if (!must_deselect)
 	SendMessage(hwnd, WM_IGNORE_CLIP, FALSE, 0);
+#endif
 }
 
 static DWORD WINAPI clipboard_read_threadfunc(void *param)

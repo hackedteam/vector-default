@@ -44,7 +44,7 @@ const char *const ttymodes[] = {
     "ECHOK",	"ECHONL",   "NOFLSH",	"TOSTOP",   "IEXTEN",
     "ECHOCTL",	"ECHOKE",   "PENDIN",	"OPOST",    "OLCUC",
     "ONLCR",	"OCRNL",    "ONOCR",	"ONLRET",   "CS7",
-    "CS8",	"PARENB",   "PARODD",	NULL
+    "CS8",	"PARENB",   "PARODD", NULL
 };
 
 /*
@@ -93,8 +93,6 @@ int get_remote_username(Config *cfg, char *user, size_t len)
     return (*user != '\0');
 }
 
-#define gpps
-#if 0
 static void gpps(void *handle, const char *name, const char *def,
 		 char *val, int len)
 {
@@ -112,7 +110,6 @@ static void gpps(void *handle, const char *name, const char *def,
 	val[len - 1] = '\0';
     }
 }
-#endif
 
 /*
  * gppfont and gppfile cannot have local defaults, since the very
@@ -130,14 +127,11 @@ static void gppfile(void *handle, const char *name, Filename *result)
 	*result = platform_default_filename(name);
 }
 
-#define gppi
-#if 0
 static void gppi(void *handle, char *name, int def, int *i)
 {
     def = platform_default_i(name, def);
     *i = read_setting_i(handle, name, def);
 }
-#endif
 
 /*
  * Read a set of name-value pairs in the format we occasionally use:
@@ -575,7 +569,7 @@ void load_settings(char *section, Config * cfg)
 
 void load_open_settings(void *sesskey, Config *cfg)
 {
-    int i;
+    int i = 0;
     char prot[10];
 
     cfg->ssh_subsys = 0;	       /* FIXME: load this properly */
@@ -611,7 +605,8 @@ void load_open_settings(void *sesskey, Config *cfg)
     gppi(sesskey, "WarnOnClose", 1, &cfg->warn_on_close);
     {
 	/* This is two values for backward compatibility with 0.50/0.51 */
-	int pingmin, pingsec;
+	int pingmin = 0;
+	int pingsec = 0;
 	gppi(sesskey, "PingInterval", 0, &pingmin);
 	gppi(sesskey, "PingIntervalSecs", 0, &pingsec);
 	cfg->ping_interval = pingmin * 60 + pingsec;

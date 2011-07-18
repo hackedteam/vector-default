@@ -8,6 +8,46 @@
 #include "terminal.h"
 #include "misc.h"
 
+int mb_to_wc(int codepage, int flags, char *mbstr, int mblen,
+	     wchar_t *wcstr, int wclen)
+{
+    return 0;
+}
+
+int is_dbcs_leadbyte(int codepage, char byte)
+{
+    return 0;
+}
+
+wchar_t xlat_uskbd2cyrllic(int ch)
+{
+   return 0;
+}
+
+int wc_to_mb(int codepage, int flags, wchar_t *wcstr, int wclen,
+	     char *mbstr, int mblen, char *defchr, int *defused,
+	     struct unicode_data *ucsdata)
+{
+	return 0;
+}
+
+void init_ucs(Config *cfg, struct unicode_data *ucsdata)
+{
+	return;
+}
+
+void get_unitab(int codepage, wchar_t * unitab, int ftype)
+{
+	return;
+}
+
+int check_compose(int first, int second)
+{
+	return 0;
+}
+
+#if 0
+
 /* Character conversion arrays; they are usually taken from windows,
  * the xterm one has the four scanlines that have no unicode 2.0
  * equivalents mapped to their unicode 3.0 locations.
@@ -1239,6 +1279,7 @@ int wc_to_mb(int codepage, int flags, wchar_t *wcstr, int wclen,
 				   mbstr, mblen, defchr, defused);
 }
 
+
 int mb_to_wc(int codepage, int flags, char *mbstr, int mblen,
 	     wchar_t *wcstr, int wclen)
 {
@@ -1249,3 +1290,5 @@ int is_dbcs_leadbyte(int codepage, char byte)
 {
     return IsDBCSLeadByteEx(codepage, byte);
 }
+
+#endif
