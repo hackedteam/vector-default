@@ -93,6 +93,8 @@ int get_remote_username(Config *cfg, char *user, size_t len)
     return (*user != '\0');
 }
 
+#define gpps
+#if 0
 static void gpps(void *handle, const char *name, const char *def,
 		 char *val, int len)
 {
@@ -110,6 +112,7 @@ static void gpps(void *handle, const char *name, const char *def,
 	val[len - 1] = '\0';
     }
 }
+#endif
 
 /*
  * gppfont and gppfile cannot have local defaults, since the very
@@ -127,11 +130,14 @@ static void gppfile(void *handle, const char *name, Filename *result)
 	*result = platform_default_filename(name);
 }
 
+#define gppi
+#if 0
 static void gppi(void *handle, char *name, int def, int *i)
 {
     def = platform_default_i(name, def);
     *i = read_setting_i(handle, name, def);
 }
+#endif
 
 /*
  * Read a set of name-value pairs in the format we occasionally use:
@@ -339,6 +345,7 @@ char *save_settings(char *section, Config * cfg)
 
 void save_open_settings(void *sesskey, Config *cfg)
 {
+#if 0
     int i;
     char *p;
 
@@ -551,6 +558,7 @@ void save_open_settings(void *sesskey, Config *cfg)
     write_setting_i(sesskey, "SerialParity", cfg->serparity);
     write_setting_i(sesskey, "SerialFlowControl", cfg->serflow);
     write_setting_s(sesskey, "WindowClass", cfg->winclass);
+#endif
 }
 
 void load_settings(char *section, Config * cfg)

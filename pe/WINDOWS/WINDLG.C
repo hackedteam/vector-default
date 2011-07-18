@@ -390,7 +390,7 @@ static int CALLBACK GenericMainDlgProc(HWND hwnd, UINT msg,
                 DestroyWindow(item);
         }
 	SendMessage(hwnd, WM_SETICON, (WPARAM) ICON_BIG,
-		    (LPARAM) LoadIcon(hinst, MAKEINTRESOURCE(IDI_CFGICON)));
+		    (LPARAM) LoadIcon(hinst, MAKEINTRESOURCE(IDI_MAINICON)));
 	/*
 	 * Centre the window.
 	 */

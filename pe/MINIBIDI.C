@@ -31,6 +31,17 @@
 
 #include <stdlib.h>	/* definition of wchar_t*/
 
+typedef struct bidi_char {
+    wchar_t origwc, wc;
+    unsigned short index;
+} bidi_char;
+
+int do_shape(bidi_char *line, bidi_char *to, int count) { return 0; }
+int do_bidi(bidi_char *line, int count) { return 0; }
+int is_rtl(int c) { return 0; }
+
+#if 0
+
 #include "misc.h"
 
 #define LMASK	0x3F	/* Embedding Level mask */
@@ -2027,5 +2038,7 @@ int main(int argc, char **argv)
 
     return 0;
 }
+
+#endif
 
 #endif

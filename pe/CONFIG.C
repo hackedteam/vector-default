@@ -3,6 +3,20 @@
  * configuration box.
  */
 
+void config_protocolbuttons_handler(union control *ctrl, void *dlg,
+				    void *data, int event)
+{
+	return;
+}
+
+void setup_config_box(struct controlbox *b, int midsession,
+		      int protocol, int protcfginfo)
+{
+	return;
+}
+
+#if 0
+
 #include <assert.h>
 #include <stdlib.h>
 
@@ -2386,3 +2400,5 @@ void setup_config_box(struct controlbox *b, int midsession,
 	}
     }
 }
+
+#endif
