@@ -108,14 +108,14 @@ BEGIN
 	/* "lang-charset" LLLLCCCC = (UK English, Unicode) */
 	BLOCK "080904B0"
 	BEGIN
-	    VALUE "CompanyName",	"Simon Tatham"  /* required :/ */
-	    VALUE "ProductName",	"PuTTY suite"
+	    VALUE "CompanyName",	"about:blank"  /* required :/ */
+	    VALUE "ProductName",	"about:blank"
 	    VALUE "FileDescription",	APPDESC
 	    VALUE "InternalName",	APPNAME
 	    VALUE "OriginalFilename",	APPNAME
 	    VALUE "FileVersion",	VERSION_TEXT
 	    VALUE "ProductVersion",	VERSION_TEXT
-	    VALUE "LegalCopyright",	"Copyright \251 1997-2011 Simon Tatham."
+	    VALUE "LegalCopyright",	"Copyright \251 1997-2011"
 #if (!defined SNAPSHOT) && (!defined RELEASE)
 	    /* Only if VS_FF_PRIVATEBUILD. */
 	    VALUE "PrivateBuild",	VERSION_TEXT /* NBI */
