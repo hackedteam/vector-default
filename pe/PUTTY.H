@@ -23,6 +23,8 @@ typedef struct backend_tag Backend;
 typedef struct terminal_tag Terminal;
 #endif
 
+#define p_socket(x,y,z) INVALID_SOCKET
+
 #include "puttyps.h"
 #include "network.h"
 #include "misc.h"

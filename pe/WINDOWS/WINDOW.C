@@ -240,7 +240,7 @@ static void start_backend(void)
 	char *str = dupprintf("%s Error", appname);
 	sprintf(msg, "Unable to open connection to\n"
 		"%.800s\n" "%s", cfg_dest(&cfg), error);
-	MessageBox(NULL, msg, str, MB_ICONERROR | MB_OK);
+	//MessageBox(NULL, msg, str, MB_ICONERROR | MB_OK);
 	sfree(str);
 	exit(0);
     }
