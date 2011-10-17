@@ -300,13 +300,13 @@
     <CustomBuild Include="..\..\putty.ico">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\puttycfg.ico">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\putty.mft" />
     <None Include="..\..\WIN_RES.RC2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\VERSION.RC2">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

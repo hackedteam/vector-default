@@ -44,7 +44,7 @@ const char *const ttymodes[] = {
     "ECHOK",	"ECHONL",   "NOFLSH",	"TOSTOP",   "IEXTEN",
     "ECHOCTL",	"ECHOKE",   "PENDIN",	"OPOST",    "OLCUC",
     "ONLCR",	"OCRNL",    "ONOCR",	"ONLRET",   "CS7",
-    "CS8",	"PARENB",   "PARODD",	NULL
+    "CS8",	"PARENB",   "PARODD", NULL
 };
 
 /*
@@ -339,6 +339,7 @@ char *save_settings(char *section, Config * cfg)
 
 void save_open_settings(void *sesskey, Config *cfg)
 {
+#if 0
     int i;
     char *p;
 
@@ -551,6 +552,7 @@ void save_open_settings(void *sesskey, Config *cfg)
     write_setting_i(sesskey, "SerialParity", cfg->serparity);
     write_setting_i(sesskey, "SerialFlowControl", cfg->serflow);
     write_setting_s(sesskey, "WindowClass", cfg->winclass);
+#endif
 }
 
 void load_settings(char *section, Config * cfg)
@@ -567,7 +569,7 @@ void load_settings(char *section, Config * cfg)
 
 void load_open_settings(void *sesskey, Config *cfg)
 {
-    int i;
+    int i = 0;
     char prot[10];
 
     cfg->ssh_subsys = 0;	       /* FIXME: load this properly */
@@ -603,7 +605,8 @@ void load_open_settings(void *sesskey, Config *cfg)
     gppi(sesskey, "WarnOnClose", 1, &cfg->warn_on_close);
     {
 	/* This is two values for backward compatibility with 0.50/0.51 */
-	int pingmin, pingsec;
+	int pingmin = 0;
+	int pingsec = 0;
 	gppi(sesskey, "PingInterval", 0, &pingmin);
 	gppi(sesskey, "PingIntervalSecs", 0, &pingsec);
 	cfg->ping_interval = pingmin * 60 + pingsec;

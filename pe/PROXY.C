@@ -265,6 +265,7 @@ static int plug_proxy_accepting (Plug p, OSSocket sock)
 static int proxy_for_destination (SockAddr addr, char *hostname, int port,
 				  const Config *cfg)
 {
+#if 0
     int s = 0, e = 0;
     char hostip[64];
     int hostip_len, hostname_len;
@@ -343,6 +344,7 @@ static int proxy_for_destination (SockAddr addr, char *hostname, int port,
 	       !isspace((unsigned char)exclude_list[s]) &&
 	       exclude_list[s] != ',') s++;
     }
+#endif
 
     /* no matches in the exclude list, so use the proxy */
     return 1;
@@ -518,6 +520,7 @@ static int get_line_end (char * data, int len)
 
 int proxy_http_negotiate (Proxy_Socket p, int change)
 {
+#if 0
     if (p->state == PROXY_STATE_NEW) {
 	/* we are just beginning the proxy negotiate process,
 	 * so we'll send off the initial bits of the request.
@@ -687,6 +690,7 @@ int proxy_http_negotiate (Proxy_Socket p, int change)
 
     plug_closing(p->plug, "Proxy error: unexpected proxy error",
 		 PROXY_ERROR_UNEXPECTED, 0);
+#endif
     return 1;
 }
 
@@ -697,6 +701,7 @@ int proxy_http_negotiate (Proxy_Socket p, int change)
 /* SOCKS version 4 */
 int proxy_socks4_negotiate (Proxy_Socket p, int change)
 {
+#if 0
     if (p->state == PROXY_CHANGE_NEW) {
 
 	/* request format:
@@ -848,12 +853,15 @@ int proxy_socks4_negotiate (Proxy_Socket p, int change)
 
     plug_closing(p->plug, "Proxy error: unexpected proxy error",
 		 PROXY_ERROR_UNEXPECTED, 0);
+#endif
+
     return 1;
 }
 
 /* SOCKS version 5 */
 int proxy_socks5_negotiate (Proxy_Socket p, int change)
 {
+#if 0
     if (p->state == PROXY_CHANGE_NEW) {
 
 	/* initial command:
@@ -1180,6 +1188,8 @@ int proxy_socks5_negotiate (Proxy_Socket p, int change)
 
     plug_closing(p->plug, "Proxy error: Unexpected proxy error",
 		 PROXY_ERROR_UNEXPECTED, 0);
+#endif
+
     return 1;
 }
 
@@ -1194,6 +1204,7 @@ int proxy_socks5_negotiate (Proxy_Socket p, int change)
 
 char *format_telnet_command(SockAddr addr, int port, const Config *cfg)
 {
+#if 0
     char *ret = NULL;
     int retlen = 0, retsize = 0;
     int so = 0, eo = 0;
@@ -1411,6 +1422,7 @@ char *format_telnet_command(SockAddr addr, int port, const Config *cfg)
     ENSURE(1);
     ret[retlen] = '\0';
     return ret;
+#endif
 
 #undef ENSURE
 }

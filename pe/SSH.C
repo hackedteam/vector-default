@@ -304,6 +304,8 @@ static unsigned int ssh_tty_parse_boolean(char *s)
 #define translate(x) if (type == x) return #x
 #define translatek(x,ctx) if (type == x && (pkt_kctx == ctx)) return #x
 #define translatea(x,ctx) if (type == x && (pkt_actx == ctx)) return #x
+#define translate
+
 static char *ssh1_pkt_type(int type)
 {
     translate(SSH1_MSG_DISCONNECT);
@@ -1202,6 +1204,7 @@ static struct Packet *ssh_new_packet(void)
  */
 static struct Packet *ssh1_rdpkt(Ssh ssh, unsigned char **data, int *datalen)
 {
+#if 0
     struct rdpkt1_state_tag *st = &ssh->rdpkt1_state;
 
     crBegin(ssh->ssh1_rdpkt_crstate);
@@ -1324,11 +1327,13 @@ static struct Packet *ssh1_rdpkt(Ssh ssh, unsigned char **data, int *datalen)
     }
 
     crFinish(st->pktin);
+#endif
 }
 
 static struct Packet *ssh2_rdpkt(Ssh ssh, unsigned char **data, int *datalen)
 {
     struct rdpkt2_state_tag *st = &ssh->rdpkt2_state;
+#if 0
 
     crBegin(ssh->ssh2_rdpkt_crstate);
 
@@ -1556,6 +1561,7 @@ static struct Packet *ssh2_rdpkt(Ssh ssh, unsigned char **data, int *datalen)
     }
 
     crFinish(st->pktin);
+#endif
 }
 
 static int s_wrpkt_prepare(Ssh ssh, struct Packet *pkt, int *offset_p)
@@ -1895,6 +1901,7 @@ static struct Packet *ssh2_pkt_init(int pkt_type)
  */
 static int ssh2_pkt_construct(Ssh ssh, struct Packet *pkt)
 {
+#if 0
     int cipherblk, maclen, padding, i;
 
     if (ssh->logctx)
@@ -1955,6 +1962,8 @@ static int ssh2_pkt_construct(Ssh ssh, struct Packet *pkt)
 
     /* Ready-to-send packet starts at pkt->data. We return length. */
     return pkt->length + padding + maclen;
+#endif
+	return 0;
 }
 
 /*
@@ -2401,6 +2410,7 @@ static void ssh2_add_sigblob(Ssh ssh, struct Packet *pkt,
  */
 static void ssh_detect_bugs(Ssh ssh, char *vstring)
 {
+#if 0
     char *imp;			       /* pointer to implementation part */
     imp = vstring;
     imp += strcspn(imp, "-");
@@ -2539,6 +2549,7 @@ static void ssh_detect_bugs(Ssh ssh, char *vstring)
 	ssh->remote_bugs |= BUG_CHOKES_ON_SSH2_IGNORE;
 	logevent("We believe remote version has SSH-2 ignore bug");
     }
+#endif
 }
 
 /*
@@ -3197,6 +3208,7 @@ static void ssh_disconnect(Ssh ssh, char *client_reason, char *wire_reason,
 static int do_ssh1_login(Ssh ssh, unsigned char *in, int inlen,
 			 struct Packet *pktin)
 {
+#if 0
     int i, j, ret;
     unsigned char cookie[8], *ptr;
     struct RSAKey servkey, hostkey;
@@ -4165,6 +4177,8 @@ static int do_ssh1_login(Ssh ssh, unsigned char *in, int inlen,
     logevent("Authentication successful");
 
     crFinish(1);
+#endif 
+	return 0;
 }
 
 void sshfwd_close(struct ssh_channel *c)
@@ -4367,6 +4381,7 @@ static void ssh_rportfwd_succfail(Ssh ssh, struct Packet *pktin, void *ctx)
 
 static void ssh_setup_portfwd(Ssh ssh, const Config *cfg)
 {
+#if 0
     const char *portfwd_strptr = cfg->portfwd;
     struct ssh_portfwd *epf;
     int i;
@@ -4697,6 +4712,7 @@ static void ssh_setup_portfwd(Ssh ssh, const Config *cfg)
 	    sfree(sportdesc);
 	    sfree(dportdesc);
 	}
+#endif
 }
 
 static void ssh1_smsg_stdout_stderr_data(Ssh ssh, struct Packet *pktin)
@@ -4720,6 +4736,7 @@ static void ssh1_smsg_stdout_stderr_data(Ssh ssh, struct Packet *pktin)
 
 static void ssh1_smsg_x11_open(Ssh ssh, struct Packet *pktin)
 {
+#if 0
     /* Remote side is trying to open a channel to talk to our
      * X-Server. Give them back a local channel number. */
     struct ssh_channel *c;
@@ -4758,6 +4775,7 @@ static void ssh1_smsg_x11_open(Ssh ssh, struct Packet *pktin)
 	    logevent("Opened X11 forward channel");
 	}
     }
+#endif
 }
 
 static void ssh1_smsg_agent_open(Ssh ssh, struct Packet *pktin)
@@ -5038,6 +5056,7 @@ static void ssh1_send_ttymode(void *data, char *mode, char *val)
 static void do_ssh1_connection(Ssh ssh, unsigned char *in, int inlen,
 			       struct Packet *pktin)
 {
+#if 0
     crBegin(ssh->do_ssh1_connection_crstate);
 
     ssh->packet_dispatch[SSH1_SMSG_STDOUT_DATA] = 
@@ -5243,6 +5262,7 @@ static void do_ssh1_connection(Ssh ssh, unsigned char *in, int inlen,
     }
 
     crFinishV;
+#endif
 }
 
 /*
@@ -5399,6 +5419,7 @@ static void ssh2_mkkey(Ssh ssh, Bignum K, unsigned char *H, char chr,
 static int do_ssh2_transport(Ssh ssh, void *vin, int inlen,
 			     struct Packet *pktin)
 {
+#if 0
     unsigned char *in = (unsigned char *)vin;
     struct do_ssh2_transport_state {
 	int nbits, pbits, warn_kex, warn_cscipher, warn_sccipher;
@@ -6416,6 +6437,7 @@ static int do_ssh2_transport(Ssh ssh, void *vin, int inlen,
     goto begin_key_exchange;
 
     crFinish(1);
+#endif
 }
 
 /*
@@ -7305,6 +7327,7 @@ static void ssh2_send_ttymode(void *data, char *mode, char *val)
 static void do_ssh2_authconn(Ssh ssh, unsigned char *in, int inlen,
 			     struct Packet *pktin)
 {
+#if 0
     struct do_ssh2_authconn_state {
 	enum {
 	    AUTH_TYPE_NONE,
@@ -9101,6 +9124,7 @@ static void do_ssh2_authconn(Ssh ssh, unsigned char *in, int inlen,
     }
 
     crFinishV;
+#endif
 }
 
 /*

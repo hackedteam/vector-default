@@ -30,7 +30,6 @@
  */
 
 #include <stdlib.h>	/* definition of wchar_t*/
-
 #include "misc.h"
 
 #define LMASK	0x3F	/* Embedding Level mask */

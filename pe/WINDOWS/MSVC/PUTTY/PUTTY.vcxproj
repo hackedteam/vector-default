@@ -63,7 +63,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>MinSpace</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>..\..\..\./;..\..\..\charset/;..\..\..\windows/;..\..\..\unix/;..\..\..\macosx/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -235,7 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\putty.ico" />
-    <CustomBuild Include="..\..\puttycfg.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\putty.rc">
@@ -245,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\putty.mft" />
+    <None Include="..\..\VERSION.RC2" />
     <None Include="..\..\WIN_RES.RC2" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
