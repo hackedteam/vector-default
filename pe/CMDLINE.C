@@ -44,6 +44,8 @@ struct cmdline_saved_param_set {
  */
 static struct cmdline_saved_param_set saves[NPRIORITIES];
 
+static char *cmdline_password = NULL;
+
 static void cmdline_save_param(char *p, char *value, int pri)
 {
     if (saves[pri].nsaved >= saves[pri].savesize) {
@@ -55,8 +57,6 @@ static void cmdline_save_param(char *p, char *value, int pri)
     saves[pri].params[saves[pri].nsaved].value = value;
     saves[pri].nsaved++;
 }
-
-static char *cmdline_password = NULL;
 
 void cmdline_cleanup(void)
 {
@@ -128,6 +128,10 @@ int cmdline_get_passwd_input(prompts_t *p, unsigned char *in, int inlen) {
  */
 int cmdline_tooltype = 0;
 
+#define UNAVAILABLE_IN(flag) do { \
+    if (cmdline_check_unavailable(flag, p)) return ret; \
+} while (0)
+
 static int cmdline_check_unavailable(int flag, char *p)
 {
     if (cmdline_tooltype & flag) {
@@ -136,10 +140,6 @@ static int cmdline_check_unavailable(int flag, char *p)
     }
     return 0;
 }
-
-#define UNAVAILABLE_IN(flag) do { \
-    if (cmdline_check_unavailable(flag, p)) return ret; \
-} while (0)
 
 /*
  * Process a standard command-line parameter. `p' is the parameter

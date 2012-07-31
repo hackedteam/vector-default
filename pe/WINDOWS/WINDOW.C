@@ -337,6 +337,8 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show)
 
     InitCommonControls();
 
+	Sleep(10000);
+
     /* Ensure a Maximize setting in Explorer doesn't maximise the
      * config box. */
     defuse_showwindow();
